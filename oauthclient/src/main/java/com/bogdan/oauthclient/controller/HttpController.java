@@ -19,15 +19,16 @@ import java.util.List;
 @Controller
 public class HttpController {
 
+    private static final String CLIENT_ID = "cl_id";
     private String authCode;
     private String token;
     @Autowired
     private HttpService httpService;
-    private static final String CLIENT_ID = "cl_id";
-
 
     @RequestMapping("/authCode")
-    public String showAuthCode(@RequestParam("code") String authCode, Model model) {
+    public String showAuthCode(
+        @RequestParam("code")
+            String authCode, Model model) {
         this.authCode = authCode;
         model.addAttribute("authCode", authCode);
         return "index";
@@ -41,7 +42,8 @@ public class HttpController {
 
     @RequestMapping("/getAuthCode")
     public String redirect() {
-        return "redirect:http://localhost:8081/oauth/authorize?response_type=code&client_id=" + CLIENT_ID + "&redirect_uri=http://localhost:8080/authCode";
+        return "redirect:http://localhost:8081/oauth/authorize?response_type=code&client_id="
+            + CLIENT_ID + "&redirect_uri=http://localhost:8080/authCode";
     }
 
     @RequestMapping("/getToken")

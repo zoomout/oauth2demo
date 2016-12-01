@@ -34,7 +34,9 @@ public class HttpServiceImpl implements HttpService {
     private static final String CLIENT_ID = "cl_id";
     private static final String CLIENT_SECRET = "client_secret";
 
-    private String credential = "Basic " + Base64.getEncoder().encodeToString((CLIENT_ID + ":" + CLIENT_SECRET).getBytes());
+    private String credential = "Basic " + Base64.getEncoder()
+                                                 .encodeToString(
+                                                     (CLIENT_ID + ":" + CLIENT_SECRET).getBytes());
 
     public JSONObject getToken(String authCode) throws IOException, JSONException {
         CloseableHttpClient client = HttpClients.createDefault();
@@ -53,7 +55,8 @@ public class HttpServiceImpl implements HttpService {
 
         CloseableHttpResponse response = client.execute(httpPost);
 
-        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity()
+                                                                             .getContent()));
 
         StringBuilder result = new StringBuilder();
         String line;
@@ -82,8 +85,10 @@ public class HttpServiceImpl implements HttpService {
     }
 
 
-    private List<Entity> responseParser(CloseableHttpResponse response) throws IOException, JSONException {
-        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+    private List<Entity> responseParser(CloseableHttpResponse response)
+        throws IOException, JSONException {
+        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity()
+                                                                             .getContent()));
 
         StringBuilder result = new StringBuilder();
         String line;
@@ -114,7 +119,8 @@ public class HttpServiceImpl implements HttpService {
 
         CloseableHttpResponse response = client.execute(httpGet);
 
-        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity()
+                                                                             .getContent()));
 
         StringBuilder result = new StringBuilder();
         String line;
